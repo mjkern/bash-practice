@@ -2,4 +2,4 @@
 
 echo "making a dated copy of $1"
 DATE_STRING=$(date -I)
-cp $1 "$DATE_STRING $1"
+cp $1 "$(echo $DATE_STRING)_$1"
