@@ -1,3 +1,5 @@
 #!/bin/bash
 
-echo "so this works now?"
+echo "making a dated copy of $1"
+DATE_STRING=$(date -I)
+cp $1 "$DATE_STRING $1"
