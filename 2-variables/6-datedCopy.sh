@@ -2,4 +2,6 @@
 
 echo "making a dated copy of $1"
 DATE_STRING=$(date -I)
-cp $1 "$(echo $DATE_STRING)_$1"
+SUFFIX=${1#*.}
+NAME=$(basename $1 .$SUFFIX)
+cp $1 "$(echo $NAME)_$(echo $DATE_STRING).$SUFFIX"
