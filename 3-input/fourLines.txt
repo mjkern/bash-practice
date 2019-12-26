@@ -1,0 +1,4 @@
+this is a same file with four lines
+two
+three
+four
