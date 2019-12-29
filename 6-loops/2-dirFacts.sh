@@ -12,5 +12,14 @@ fi
 
 for thing in $(ls $1)
 do
-  echo $thing
+  path="$1$thing"
+  if [ -d $path ]
+  then
+    echo $thing is a directory
+  elif [ -e $path ]
+  then
+    echo $thing is a file
+  else
+    echo "I don't know what $thing is..."
+  fi
 done
