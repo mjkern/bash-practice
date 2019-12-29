@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ### SETUP ###
-
 # generate code
 CODE=''
 for I in {1..4}
@@ -19,4 +18,20 @@ echo guessing by entering four \(space-separated\) numbers.
 echo
 
 ### PLAY GAME ###
-read -p "enter a guess: " GUESS
+CORRECT=false
+until $CORRECT
+do
+  # get the guess
+  read -p "enter a guess: " GUESS
+
+  # count the correct characters
+  for I in {1..4}
+  do
+    GUESS_INT=$( echo $GUESS | cut -d ' ' -f$I )
+    CORRECT_INT=$( echo $CODE | cut -d ' ' -f$I )
+    if [ $GUESS_INT -eq $CORRECT_INT ]
+    then
+      echo your guess was correct at position $I
+    fi
+  done
+done
