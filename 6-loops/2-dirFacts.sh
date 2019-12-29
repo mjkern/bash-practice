@@ -18,7 +18,7 @@ do
     echo $thing is a directory
   elif [ -e $path ]
   then
-    echo $thing is a file
+    echo $thing is a $(stat -c %s $path)-byte file
   else
     echo "I don't know what $thing is..."
   fi
