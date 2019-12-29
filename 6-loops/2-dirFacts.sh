@@ -15,7 +15,7 @@ do
   path="$1$thing"
   if [ -d $path ]
   then
-    echo $thing is a directory
+    echo $thing is a directory that contains $(ls $path | wc -l) items
   elif [ -e $path ]
   then
     echo $thing is a $(stat -c %s $path)-byte file
