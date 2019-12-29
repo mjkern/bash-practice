@@ -25,13 +25,15 @@ do
   read -p "enter a guess: " GUESS
 
   # count the correct characters
+  NUM_CORRECT=0
   for I in {1..4}
   do
     GUESS_INT=$( echo $GUESS | cut -d ' ' -f$I )
     CORRECT_INT=$( echo $CODE | cut -d ' ' -f$I )
     if [ $GUESS_INT -eq $CORRECT_INT ]
     then
-      echo your guess was correct at position $I
+      (( NUM_CORRECT++ ))
     fi
   done
+  echo $NUM_CORRECT correct number and position
 done
