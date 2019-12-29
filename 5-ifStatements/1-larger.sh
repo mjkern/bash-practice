@@ -6,4 +6,9 @@ then
   exit 1
 fi
 
-echo more to come here...
+if [ $1 -gt $2 ]
+then
+  echo $1
+else
+  echo $2
+fi
