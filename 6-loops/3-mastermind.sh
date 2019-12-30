@@ -18,8 +18,7 @@ echo guessing by entering four \(space-separated\) numbers.
 echo
 
 ### PLAY GAME ###
-CORRECT=false
-until $CORRECT
+until [ $NUM_CORRECT -eq 4 ]
 do
   # get the guess
   read -p "enter a guess: " GUESS
@@ -36,4 +35,30 @@ do
     fi
   done
   echo $NUM_CORRECT correct number and position
+
+  # count the number of correct characters in the wrong position
+  NUM_HALF_CORRECT=0
+  GUESS_INDEX=1
+  CODE_INDEX=1
+  while [ $GUESS_INDEX -le 4 ] && [ $CODE_INDEX -le 4 ]
+  do
+    GUESS_INT=$( echo $GUESS | cut -d ' ' -f 1-4 --output-delimiter=$'\n' | sort | cut -d $'\n' -f $GUESS_INDEX )
+    CODE_INT=$( echo $CODE | cut -d ' ' -f 1-4 --output-delimiter=$'\n' | sort | cut -d $'\n' -f $CODE_INDEX )
+    if [ $CODE_INT -eq $GUESS_INT ]
+    then
+      (( NUM_HALF_CORRECT++ ))
+      (( CODE_INDEX++ ))
+      (( GUESS_INDEX++ ))
+    elif [ $CODE_INT -lt $GUESS_INT ]
+    then
+      (( CODE_INDEX++ ))
+    else # [ $GUESS_INT -lt $CODE_INT ] --> must be true
+      (( GUESS_INDEX++ ))
+    fi
+  done
+  NUM_HALF_CORRECT=$(( NUM_HALF_CORRECT - NUM_CORRECT )) # don't double count
+  echo $NUM_HALF_CORRECT correct but in the wrong position
 done
+
+### GAME OVER ###
+echo you did it!
