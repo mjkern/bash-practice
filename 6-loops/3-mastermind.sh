@@ -17,6 +17,7 @@ echo
 
 # misc
 NUM_GUESSES=0
+NUM_CORRECT=0
 
 ### PLAY GAME ###
 until [ $NUM_CORRECT -eq 4 ]
