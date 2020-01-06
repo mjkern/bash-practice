@@ -68,4 +68,22 @@ do
     continue
   fi
 
+  # TODO: check for win
+
+  # make the computer move
+  for i in {0..2}
+  do
+    for j in {0..2}
+    do
+      if [ ! ${BOARD[$i,$j]} = X ] && [ ! ${BOARD[$i,$j]} = O ]; then
+        MOVE=${BOARD[$i,$j]}
+        BOARD[$i,$j]=O
+        break 2
+      fi
+    done
+  done
+  echo Nice move. I will move in space $MOVE:
+
+  # TODO: check for win
+
 done
