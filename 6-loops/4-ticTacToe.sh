@@ -69,7 +69,9 @@ do
   fi
 
   # check for win
-  if ([ ${BOARD[0,0]} = X ] && [ ${BOARD[1,0]} = X ] && [ ${BOARD[2,0]} = X ])
+  if   ([ ${BOARD[0,0]} = X ] && [ ${BOARD[1,0]} = X ] && [ ${BOARD[2,0]} = X ]) \
+    || ([ ${BOARD[0,1]} = X ] && [ ${BOARD[1,1]} = X ] && [ ${BOARD[2,1]} = X ]) \
+    || ([ ${BOARD[0,2]} = X ] && [ ${BOARD[1,2]} = X ] && [ ${BOARD[2,2]} = X ]) \
   then
     echo You Win!
     break
