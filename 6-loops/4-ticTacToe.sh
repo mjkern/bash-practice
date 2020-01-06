@@ -39,7 +39,7 @@ do
   VALID=false
   until $VALID
   do
-    read -p "On which space would you like to play?" MOVE
+    read -p "On which space would you like to play? " MOVE
     for i in {1..9}
     do
       if [ $i -eq $MOVE ]
@@ -58,9 +58,14 @@ do
   done
 
   # update the board
-  echo $MOVE
   ROW=$(( ($MOVE - 1) / 3 ))
   COL=$(( ($MOVE - 1) % 3 ))
-  BOARD[$ROW,$COL]=X
+  if [ ${BOARD[$ROW,$COL]} = $MOVE ]
+  then
+    BOARD[$ROW,$COL]=X
+  else
+    echo Please make sure to select an empty space. Try again:
+    continue
+  fi
 
 done
