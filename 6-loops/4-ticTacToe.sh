@@ -12,21 +12,38 @@ do
   BOARD[$(( ($i - 1) / 3)),$(( ($i - 1) % 3 ))]=$i
 done
 
-# print the board
-for i in {0..2}
+### GAME LOOP ###
+OVER=false
+until $OVER
 do
-  for j in {0..2}
+
+  # print the board
+  for i in {0..2}
   do
-    printf "${BOARD[$i,$j]}"
-    if [ ! $j -eq 2 ]
+    for j in {0..2}
+    do
+      printf "${BOARD[$i,$j]}"
+      if [ ! $j -eq 2 ]
+      then
+        printf "|"
+      fi
+    done
+    echo
+    if [ ! $i -eq 2 ]
     then
-      printf "|"
+      printf -- '-+-+-\n'
     fi
   done
-  echo
-  if [ ! $i -eq 2 ]
-  then
-    printf -- '-+-+-\n'
-  fi
-done
 
+  # get the move
+  read -p "On which space would you like to play?" MOVE
+
+  # TODO: check that it is a legal move
+
+  # update the board
+  echo $MOVE
+  ROW=$(( ($MOVE - 1) / 3 ))
+  COL=$(( ($MOVE - 1) % 3 ))
+  BOARD[$ROW,$COL]=X
+
+done
