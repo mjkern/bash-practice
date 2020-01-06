@@ -35,10 +35,27 @@ do
     fi
   done
 
-  # get the move
-  read -p "On which space would you like to play?" MOVE
+  # get a valid move
+  VALID=false
+  until $VALID
+  do
+    read -p "On which space would you like to play?" MOVE
+    for i in {1..9}
+    do
+      if [ $i -eq $MOVE ]
+      then
+        VALID=true
+        break
+      fi
+    done
 
-  # TODO: check that it is a legal move
+    if $VALID
+    then
+      break
+    else
+      echo Please make sure your move is an interger between 1 and 9.
+    fi
+  done
 
   # update the board
   echo $MOVE
