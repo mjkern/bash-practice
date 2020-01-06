@@ -68,7 +68,7 @@ do
     continue
   fi
 
-  # check for win
+  # check for player win
   if   ([ ${BOARD[0,0]} = X ] && [ ${BOARD[1,0]} = X ] && [ ${BOARD[2,0]} = X ]) \
     || ([ ${BOARD[0,1]} = X ] && [ ${BOARD[1,1]} = X ] && [ ${BOARD[2,1]} = X ]) \
     || ([ ${BOARD[0,2]} = X ] && [ ${BOARD[1,2]} = X ] && [ ${BOARD[2,2]} = X ]) \
@@ -96,7 +96,19 @@ do
   done
   echo Nice move. I will move in space $MOVE:
 
-  # TODO: check for win
+  # check for computer win
+  if   ([ ${BOARD[0,0]} = O ] && [ ${BOARD[1,0]} = O ] && [ ${BOARD[2,0]} = O ]) \
+    || ([ ${BOARD[0,1]} = O ] && [ ${BOARD[1,1]} = O ] && [ ${BOARD[2,1]} = O ]) \
+    || ([ ${BOARD[0,2]} = O ] && [ ${BOARD[1,2]} = O ] && [ ${BOARD[2,2]} = O ]) \
+    || ([ ${BOARD[0,0]} = O ] && [ ${BOARD[0,1]} = O ] && [ ${BOARD[0,2]} = O ]) \
+    || ([ ${BOARD[1,0]} = O ] && [ ${BOARD[1,1]} = O ] && [ ${BOARD[1,2]} = O ]) \
+    || ([ ${BOARD[2,0]} = O ] && [ ${BOARD[2,1]} = O ] && [ ${BOARD[2,2]} = O ]) \
+    || ([ ${BOARD[0,0]} = O ] && [ ${BOARD[1,1]} = O ] && [ ${BOARD[2,2]} = O ]) \
+    || ([ ${BOARD[0,2]} = O ] && [ ${BOARD[1,1]} = O ] && [ ${BOARD[2,0]} = O ]) \
+  then
+    echo You Lose.
+    break
+  fi
 
 done
 echo Thanks for playing :\)
