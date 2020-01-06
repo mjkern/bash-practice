@@ -68,7 +68,12 @@ do
     continue
   fi
 
-  # TODO: check for win
+  # check for win
+  if ([ ${BOARD[0,0]} = X ] && [ ${BOARD[1,0]} = X ] && [ ${BOARD[2,0]} = X ])
+  then
+    echo You Win!
+    break
+  fi
 
   # make the computer move
   for i in {0..2}
@@ -87,3 +92,4 @@ do
   # TODO: check for win
 
 done
+echo Thanks for playing :\)
