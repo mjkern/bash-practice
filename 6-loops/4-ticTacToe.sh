@@ -42,7 +42,7 @@ do
     read -p "On which space would you like to play? " MOVE
     for i in {1..9}
     do
-      if [ $i -eq $MOVE ]
+      if [ $i = $MOVE ]
       then
         VALID=true
         break
@@ -94,7 +94,7 @@ do
       fi
     done
   done
-  echo Nice move. I will move in space $MOVE:
+  echo Nice move. I will play on space $MOVE:
 
   # check for computer win
   if   ([ ${BOARD[0,0]} = O ] && [ ${BOARD[1,0]} = O ] && [ ${BOARD[2,0]} = O ]) \
@@ -111,4 +111,6 @@ do
   fi
 
 done
+
+### GAME OVER ###
 echo Thanks for playing :\)
